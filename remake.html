@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>outer banks</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body>
+    <div class="galeria">
+        <img src="./imagem/img 1.webp" class="um">
+        <img src="./imagem/img 2.png" class="dois">
+        <img src="./imagem/img 3.webp" class="tres">
+        <img src="./imagem/img 4.webp" class="quatro">
+        <img src="./imagem/img 5.webp" class="cinco">
+        <img src="./imagem/img 6.webp" class="seis">
+        <img src="./imagem/img 7.jpg" class="sete">
+    </div>
+
+    <div class="modal">
+        <button class="voltar">◄</button>
+        <img src="" class="imagem">
+        <button class="avancar">►</button>
+    </div>
+
+    <script>
+        const img1 = document.querySelector(".um");
+        const img2 = document.querySelector(".dois");
+        const img3 = document.querySelector(".tres");
+        const img4 = document.querySelector(".quatro");
+        const img5 = document.querySelector(".cinco");
+        const img6 = document.querySelector(".seis");
+        const img7 = document.querySelector(".sete");
+        const modal = document.querySelector(".modal");
+        const imagem = document.querySelector(".imagem");
+        const volt = document.querySelector(".voltar");
+        const avant = document.querySelector(".avancar");
+
+        const imagens = [img1, img2, img3, img4, img5, img6, img7];
+        let indexAtual = 0;
+
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Escape" || event.code === "Space" || event.code === "Enter") {
+                modal.style.display = "none";
+            }
+        });
+
+        function exibirImagem(index) {
+            modal.style.display = "flex";
+            imagem.src = imagens[index].src;
+        }
+
+        function avancarImagem() {
+            indexAtual = (indexAtual + 1) % imagens.length;
+            exibirImagem(indexAtual);
+        }
+
+        function voltarImagem() {
+            indexAtual = (indexAtual - 1 + imagens.length) % imagens.length;
+            exibirImagem(indexAtual);
+        }
+
+        for (let i = 0; i < imagens.length; i++) {
+            imagens[i].addEventListener("click", function () {
+                indexAtual = i;
+                exibirImagem(indexAtual);
+            });
+        }
+
+        volt.addEventListener("click", voltarImagem);
+        avant.addEventListener("click", avancarImagem);
+    </script>
+</body>
+
+</html>
